@@ -2,15 +2,25 @@
 
 将 Garry Tan 的 GStack 方法论移植到 OpenCode，支持多模型、多角色的 AI 编程工作流。
 
+## 为什么创建这个项目？
+
+**原版 GStack 的局限**：
+- 仅支持 Claude Code——一个**闭源**的 AI 编程工具
+- 只能用 Claude 模型，无法使用 Kimi、GPT、DeepSeek 等其他模型
+- 单一会话内切换角色，存在上下文污染问题
+
+**本项目解决的痛点**：
+- **OpenCode 是开源的**——你可以完全掌控自己的开发环境
+- **模型自由**——突破 Claude 限制，使用任意模型（Kimi K2.5、GPT-4、DeepSeek 等）
+- **智能分工**——根据模型特点分配角色：
+  - 用 **Kimi K2.5** 做 CEO（长上下文，擅长需求分析）
+  - 用 **Claude** 做代码审查（细致严谨）
+  - 用 **DeepSeek** 做工程架构（推理能力强）
+- **真正隔离**——每个角色独立 Agent，彻底避免上下文污染
+
 ## 核心理念
 
 GStack 的本质不是提示词集合，而是**结构化工作流系统**——把 AI 从"万能助手"变成"按需召唤的专家团队"。
-
-相比原版 GStack（仅支持 Claude Code），本项目：
-- ✅ **模型自由**：支持 Kimi、Claude、GPT、DeepSeek 等任意模型
-- ✅ **真正隔离**：每个角色独立 Agent，彻底避免上下文污染
-- ✅ **可扩展**：社区可贡献更多角色（产品经理、设计师、安全工程师等）
-- ✅ **完全开源**：MIT 协议，欢迎 Fork 定制
 
 ## 角色系统
 
@@ -94,6 +104,37 @@ model: anthropic/claude-sonnet-4-20250514  # 使用 Claude
 ---
 ```
 
+### 智能模型分工示例
+
+根据不同模型的优势分配角色：
+
+```yaml
+# agents/ceo.md - 用 Kimi K2.5 做需求分析
+---
+model: kimi/kimi-k2.5
+temperature: 0.7
+---
+# Kimi 长上下文强，适合梳理复杂需求
+
+# agents/reviewer.md - 用 Claude 做代码审查
+---
+model: anthropic/claude-sonnet-4-20250514
+temperature: 0.2
+---
+# Claude 细致严谨，擅长找边界情况
+
+# agents/eng-manager.md - 用 DeepSeek 做架构设计
+---
+model: deepseek/deepseek-coder
+---
+# DeepSeek 推理能力强，适合技术方案
+```
+
+这样配置的好处：
+- **成本优化**：简单任务用便宜模型，复杂任务用好模型
+- **效果最大化**：每个任务都用最适合的模型
+- **灵活切换**：随时可以调整，不用被单一模型锁定
+
 ### 自定义角色
 
 1. 复制 `agents/template.md`
@@ -127,11 +168,14 @@ gstack-opencode/
 
 | 特性 | GStack (Claude Code) | GStack for OpenCode |
 |------|---------------------|---------------------|
-| 支持模型 | 仅 Claude | Kimi、Claude、GPT、Gemini 等 |
-| 角色隔离 | 单一会话切换 | 独立 Agent，完全隔离 |
-| 可扩展性 | 固定 6 个角色 | 可自定义任意角色 |
-| 开源协议 | 配置仓库 | MIT |
-| 适用人群 | Claude Code 用户 | OpenCode 用户 |
+| **工具性质** | ❌ 闭源（Anthropic 专有） | ✅ **开源**（OpenCode） |
+| **支持模型** | 仅 Claude | **任意模型**（Kimi、GPT、DeepSeek 等） |
+| **模型分工** | 单一模型处理所有角色 | **按模型优势分配角色** |
+| **角色隔离** | 单一会话内切换 | **独立 Agent，完全隔离** |
+| **可扩展性** | 固定 6 个角色 | **可自定义任意角色** |
+| **数据隐私** | 依赖 Anthropic 服务 | **可自托管，完全掌控** |
+| **开源协议** | 配置仓库 | **MIT** |
+| **适用人群** | Claude Code 付费用户 | **所有开发者** |
 
 ## 贡献
 
