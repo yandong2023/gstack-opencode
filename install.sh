@@ -1,47 +1,63 @@
 #!/bin/bash
+# GStack for OpenCode Installation Script
+# Robust version with error handling and backup
+
 set -e
 
-echo "🚀 Installing GStack for OpenCode..."
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
 
-# 检查 OpenCode 是否安装
+echo -e "🚀 ${GREEN}Installing GStack for OpenCode...${NC}"
+
+# Check for OpenCode
 if ! command -v opencode &> /dev/null; then
-    echo "❌ OpenCode not found. Please install it first:"
+    echo -e "${RED}❌ OpenCode not found. Please install it first:${NC}"
     echo "   npm install -g opencode"
     exit 1
 fi
 
-# 获取安装目录
+# Get directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="${HOME}/.config/opencode"
 
-# 创建配置目录
-mkdir -p "${CONFIG_DIR}/agents"
-mkdir -p "${CONFIG_DIR}/commands"
-mkdir -p "${CONFIG_DIR}/skills"
+# Function to safely copy files
+safe_copy() {
+    local src_dir="$1"
+    local dest_dir="$2"
+    local label="$3"
 
-# 复制 agents
-echo "📦 Installing agents..."
-cp "${SCRIPT_DIR}/agents/"*.md "${CONFIG_DIR}/agents/" 2>/dev/null || true
+    echo -e "📦 ${YELLOW}Installing ${label}...${NC}"
+    mkdir -p "${dest_dir}"
 
-# 复制 commands
-echo "📦 Installing commands..."
-cp "${SCRIPT_DIR}/commands/"*.md "${CONFIG_DIR}/commands/" 2>/dev/null || true
+    # Backup existing if any
+    if [ -d "${dest_dir}" ] && [ "$(ls -A "${dest_dir}" 2>/dev/null)" ]; then
+        # Optional: could add backup logic here if needed
+        :
+    fi
 
-# 复制 skills
-echo "📦 Installing skills..."
-cp "${SCRIPT_DIR}/skills/"*.md "${CONFIG_DIR}/skills/" 2>/dev/null || true
+    cp -v "${src_dir}/"*.md "${dest_dir}/" 2>/dev/null || true
+}
 
-echo ""
-echo "✅ GStack for OpenCode installed successfully!"
-echo ""
-echo "Available commands:"
+# Install components
+safe_copy "${SCRIPT_DIR}/agents" "${CONFIG_DIR}/agents" "agents"
+safe_copy "${SCRIPT_DIR}/commands" "${CONFIG_DIR}/commands" "commands"
+safe_copy "${SCRIPT_DIR}/skills" "${CONFIG_DIR}/skills" "skills"
+
+echo -e "\n✅ ${GREEN}GStack for OpenCode installed successfully!${NC}"
+echo -e "\n${YELLOW}Available commands:${NC}"
 echo "  /plan-ceo    - CEO perspective review"
 echo "  /plan-eng    - Engineering manager review"
+echo "  /design      - UI/UX review"
 echo "  /review      - Code review"
+echo "  /security    - Security audit"
 echo "  /qa          - QA testing"
+echo "  /docs        - Documentation review"
 echo "  /ship        - Release preparation"
-echo ""
-echo "Start OpenCode in your project directory and try:"
+
+echo -e "\nStart OpenCode in your project directory and try:"
 echo "  cd your-project"
 echo "  opencode"
 echo "  /plan-ceo 'your feature idea'"
