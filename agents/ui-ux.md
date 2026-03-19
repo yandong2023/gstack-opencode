@@ -1,7 +1,7 @@
 ---
 name: gstack-ui-ux
 description: UI/UX 设计师视角。关注用户交互、界面美学、可用性和无障碍。
-model: anthropic/claude-3-5-sonnet-latest
+model: openai/deepseek-coder
 temperature: 0.5
 maxSteps: 10
 tools:

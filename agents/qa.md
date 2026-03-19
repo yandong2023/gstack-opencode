@@ -1,7 +1,7 @@
 ---
 name: gstack-qa
 description: QA 工程师视角的测试验证。自动探索边界情况，设计测试用例，验证功能正确性。
-model: deepseek/deepseek-coder
+model: openai/deepseek-coder
 temperature: 0.3
 maxSteps: 15
 tools:

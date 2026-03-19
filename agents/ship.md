@@ -1,7 +1,7 @@
 ---
 name: gstack-ship
 description: 发布经理视角的版本管理和发布流程。准备发布说明、检查清单、回滚策略，确保顺利上线。
-model: kimi/moonshot-v1-32k
+model: openai/deepseek-coder
 temperature: 0.2
 maxSteps: 10
 tools:

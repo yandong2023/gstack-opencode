@@ -55,17 +55,23 @@ graph LR
 
 ## 🇨🇳 Domestic Model Support (DeepSeek/Kimi/GLM)
 
-Since OpenCode's official provider support may lag, you can use **OpenAI Compatible Mode** to connect any domestic model:
+If you encounter `ERR_INVALID_URL` or other issues with `opencode auth login`, use the **Environment Variable Workaround** to connect domestic models (e.g., DeepSeek):
 
-1. Copy `opencode.json.example` to your project root or `~/.config/opencode/opencode.json`.
-2. Edit the `baseURL` to match your provider.
-3. Add your API Key using the CLI:
+1. **Skip `opencode auth login`**.
+2. **Export Environment Variables**:
    ```bash
-   # Select 'Other' or your custom provider
-   opencode auth login
+   # Add these to your .zshrc or .bashrc
+   export OPENAI_API_KEY="your-deepseek-api-key"
+   export OPENAI_BASE_URL="https://api.deepseek.com/v1"
+   ```
+3. **Run OpenCode**:
+   ```bash
+   cd your-project
+   opencode
+   /plan-ceo "Analyze my project"
    ```
 
-Check [opencode.json.example](opencode.json.example) for detailed configuration for DeepSeek, Kimi (Moonshot), and Zhipu GLM.
+*Note: In this mode, GStack roles use `openai/deepseek-coder` as the model identifier.*
 
 ## 🚀 Quick Start
 

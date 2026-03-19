@@ -1,7 +1,7 @@
 ---
 name: gstack-security
 description: 安全专家视角。识别潜在的安全漏洞、隐私泄露和不安全的编程实践。
-model: anthropic/claude-3-5-sonnet-latest
+model: openai/deepseek-coder
 temperature: 0.1
 maxSteps: 10
 tools:

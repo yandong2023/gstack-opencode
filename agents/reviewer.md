@@ -1,7 +1,7 @@
 ---
 name: gstack-reviewer
 description: 资深工程师视角的代码审查。找出 CI 过了但上线会炸的隐患：竞态条件、信任边界、重试逻辑、资源泄漏等。
-model: anthropic/claude-3-5-sonnet-latest
+model: openai/deepseek-coder
 temperature: 0.2
 maxSteps: 20
 tools:
