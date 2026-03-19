@@ -34,19 +34,28 @@
         }
       }
     },
-    "zhipu": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Zhipu GLM",
-      "options": {
-        "baseURL": "https://open.bigmodel.cn/api/paas/v4/"
-      },
+    "openai": {
+      "name": "OpenAI",
       "models": {
-        "glm-4": {
-          "name": "GLM-4"
-        },
-        "glm-4-9b": {
-          "name": "GLM-4-9B"
-        }
+        "gpt-4o": { "name": "GPT-4o" }
+      }
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "models": {
+        "claude-3-5-sonnet-latest": { "name": "Claude 3.5 Sonnet" }
+      }
+    },
+    "google": {
+      "name": "Google Gemini",
+      "models": {
+        "gemini-1.5-pro-latest": { "name": "Gemini 1.5 Pro" }
+      }
+    },
+    "github": {
+      "name": "GitHub Copilot",
+      "models": {
+        "copilot-codex": { "name": "Codex" }
       }
     }
   }

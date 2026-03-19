@@ -1,7 +1,7 @@
 ---
 name: gstack-eng-manager
 description: 工程经理视角的架构设计和技术规划。关注系统边界、数据流、扩展性、测试策略，不写具体实现代码。
-model: deepseek/deepseek-coder
+model: google/gemini-1.5-pro-latest
 temperature: 0.3
 maxSteps: 15
 tools:

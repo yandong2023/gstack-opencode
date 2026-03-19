@@ -1,7 +1,7 @@
 ---
 name: gstack-ceo
 description: CEO 视角的产品愿景和需求验证。重构问题本质，挖掘隐含需求，判断优先级，而不是直接给解决方案。
-model: kimi/kimi-k2.5
+model: kimi/moonshot-v1-128k
 temperature: 0.7
 maxSteps: 10
 tools:

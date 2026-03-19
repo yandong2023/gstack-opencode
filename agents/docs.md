@@ -1,7 +1,7 @@
 ---
 name: gstack-docs
 description: 文档专家视角。确保项目的 README、API 文档和代码注释清晰、准确且易于理解。
-model: gpt-4o
+model: openai/gpt-4o
 temperature: 0.3
 maxSteps: 10
 tools:
