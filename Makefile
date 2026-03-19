@@ -1,15 +1,26 @@
-.PHONY: install uninstall list test lint clean validate
+.PHONY: install uninstall list test lint clean validate help
 
-# Default: install
-all: install
+VERSION := 0.2.0
+
+# Default: help
+all: help
+
+help:
+	@echo "GStack for OpenCode v$(VERSION)"
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "Targets:"
+	@echo "  install    Install agents, commands and skills"
+	@echo "  dev        Install using symlinks (for development)"
+	@echo "  uninstall  Remove all installed components"
+	@echo "  validate   Check environment and configuration"
+	@echo "  list       List all available agents and commands"
+	@echo "  lint       Check Markdown files for consistency"
+	@echo "  help       Show this help message"
 
 install:
 	@chmod +x install.sh
 	@./install.sh
-
-validate:
-	@chmod +x scripts/validate-config.sh
-	@./scripts/validate-config.sh
 
 # Developer mode: link files instead of copy
 dev:

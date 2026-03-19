@@ -1,0 +1,35 @@
+name: Bug Report
+description: Report a bug to help us improve GStack for OpenCode.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug!
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How did you encounter this bug?
+      placeholder: |
+        1. Run `opencode`
+        2. Run `/plan-ceo`
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: What is your setup?
+      placeholder: OpenCode version, OS, Model used (DeepSeek/Claude/etc.)
+    validations:
+      required: true
