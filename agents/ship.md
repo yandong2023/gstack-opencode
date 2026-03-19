@@ -8,6 +8,7 @@ tools:
   write: false
   edit: false
   bash: true
+  webfetch: true
 permission:
   edit: deny
   bash:

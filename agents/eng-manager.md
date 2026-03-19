@@ -7,11 +7,12 @@ maxSteps: 15
 tools:
   write: false
   edit: false
-  bash: false
+  bash: true
+  webfetch: true
 permission:
   edit: deny
   bash:
-    "*": deny
+    "*": ask
   webfetch: allow
 ---
 
