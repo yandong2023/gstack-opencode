@@ -1,10 +1,15 @@
-.PHONY: install uninstall list test lint clean
+.PHONY: install uninstall list test lint clean validate
 
 # Default: install
 all: install
 
 install:
+	@chmod +x install.sh
 	@./install.sh
+
+validate:
+	@chmod +x scripts/validate-config.sh
+	@./scripts/validate-config.sh
 
 # Developer mode: link files instead of copy
 dev:

@@ -47,11 +47,25 @@ graph LR
 | **Eng Manager** | `/plan-eng` | Architecture, Tech Choice | DeepSeek Coder (Logic) |
 | **Developer** | (Default) | Implementation | Claude 3.5 Sonnet |
 | **Reviewer** | `/review` | Critical Bugs, Logic | Claude 3.5 Sonnet |
-| **Security** | `/security` | Vulnerabilities, Privacy | GPT-4o / Claude |
+| **Security** | `/security` | Vulnerabilities, Privacy | Claude 3.5 Sonnet |
 | **Designer** | `/design` | UI/UX, Accessibility | Claude 3.5 Sonnet |
 | **QA** | `/qa` | Edge Cases, Automation | DeepSeek Coder |
 | **Docs** | `/docs` | Documentation, Comments | GPT-4o |
 | **Ship** | `/ship` | Release, Rollback Plan | Kimi |
+
+## 🇨🇳 Domestic Model Support (DeepSeek/Kimi/GLM)
+
+Since OpenCode's official provider support may lag, you can use **OpenAI Compatible Mode** to connect any domestic model:
+
+1. Copy `opencode.json.example` to your project root or `~/.config/opencode/opencode.json`.
+2. Edit the `baseURL` to match your provider.
+3. Add your API Key using the CLI:
+   ```bash
+   # Select 'Other' or your custom provider
+   opencode auth login
+   ```
+
+Check [opencode.json.example](opencode.json.example) for detailed configuration for DeepSeek, Kimi (Moonshot), and Zhipu GLM.
 
 ## 🚀 Quick Start
 
@@ -63,6 +77,9 @@ git clone https://github.com/yandong2023/gstack-opencode.git
 
 # Install using the script or Makefile
 cd gstack-opencode && make install
+
+# Validate installation
+make validate
 ```
 
 ### Usage

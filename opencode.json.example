@@ -1,0 +1,53 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek",
+      "options": {
+        "baseURL": "https://api.deepseek.com/v1"
+      },
+      "models": {
+        "deepseek-coder": {
+          "name": "DeepSeek Coder V2"
+        },
+        "deepseek-chat": {
+          "name": "DeepSeek Chat"
+        }
+      }
+    },
+    "kimi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kimi (Moonshot)",
+      "options": {
+        "baseURL": "https://api.moonshot.cn/v1"
+      },
+      "models": {
+        "moonshot-v1-8k": {
+          "name": "Kimi 8k"
+        },
+        "moonshot-v1-32k": {
+          "name": "Kimi 32k"
+        },
+        "moonshot-v1-128k": {
+          "name": "Kimi 128k"
+        }
+      }
+    },
+    "zhipu": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Zhipu GLM",
+      "options": {
+        "baseURL": "https://open.bigmodel.cn/api/paas/v4/"
+      },
+      "models": {
+        "glm-4": {
+          "name": "GLM-4"
+        },
+        "glm-4-9b": {
+          "name": "GLM-4-9B"
+        }
+      }
+    }
+  }
+}
