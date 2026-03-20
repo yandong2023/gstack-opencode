@@ -1,11 +1,12 @@
 # GStack for OpenCode 🚀
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](Makefile)
 [![OpenCode Compatibility](https://img.shields.io/badge/OpenCode-Compatible-brightgreen)](https://opencode.ai/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](CONTRIBUTING.md)
 
-> **Port Garry Tan's GStack methodology to OpenCode.**  
-> A structured, multi-model, multi-role AI programming workflow for world-class development.
+> **The ultimate multi-agent AI programming team, powered by OpenCode.**  
+> Porting Garry Tan's GStack methodology with "Best-of-Breed" model selection and advanced tool-use capabilities.
 
 ---
 
@@ -15,19 +16,19 @@
 
 ## 🌐 Overview
 
-**GStack for OpenCode** is more than just a set of prompts; it's a **Structured Workflow System**. It transforms AI from a "jack-of-all-trades" assistant into a specialized team of experts summoned on demand.
+**GStack for OpenCode** transforms your AI from a single assistant into a **Dynamic Expert Team**. By leveraging OpenCode's agentic framework, it assigns specialized roles to the most suitable LLMs (Claude, Gemini, DeepSeek, Kimi), creating a workflow that outperforms single-model tools like Claude Code in complex, long-term engineering tasks.
 
-### Why GStack for OpenCode?
+### ✨ Key Features
 
-- **Open Source First**: Fully compatible with [OpenCode](https://opencode.ai/), giving you complete control over your environment.
-- **Model Agnostic**: Break free from provider lock-in. Use Kimi for reasoning, Claude for review, and DeepSeek for architecture.
-- **True Isolation**: Each role is a separate Agent, preventing context contamination.
-- **Expert Specialization**: Every task is handled by the best-fit model for the job.
+- **🛡️ Multi-Model Mastery**: Use **Claude 3.5 Sonnet** for logic, **Gemini 1.5 Pro** for architecture (2M context), and **DeepSeek/Kimi** for cost-effective reasoning.
+- **⚔️ Advanced Tool-Use**: Agents are unlocked with `bash` (shell execution), `webfetch` (real-time research), and `edit` (file modification) capabilities.
+- **🧩 Zero Context Pollution**: Each role runs in an isolated agent session, ensuring critical architectural decisions aren't diluted by implementation details.
+- **🇨🇳 Domestic Ready**: First-class support for DeepSeek, Kimi, and Zhipu GLM via OpenAI-compatible endpoints.
 
-## 🏗️ Architecture & Workflow
+## 🏗️ Workflow Architecture
 
 ```mermaid
-graph LR
+graph TD
     A[CEO /plan-ceo] -->|Verify Value| B[Eng Manager /plan-eng]
     B -->|Design Architecture| C[Developer Default]
     C -->|Implementation| D[Reviewer /review]
@@ -39,60 +40,71 @@ graph LR
     I -->|Release| J(Success)
 ```
 
-## 🎭 Role System
+## ⚖️ Why GStack? (Pros & Cons)
 
-| Role | Command | Focus | Model Recommendation |
-|------|---------|-------|----------------------|
-| **CEO** | `/plan-ceo` | Product Vision, MVP Scope | Kimi K2.5 (Context) |
-| **Eng Manager** | `/plan-eng` | Architecture, Tech Choice | DeepSeek Coder (Logic) |
-| **Developer** | (Default) | Implementation | Claude 3.5 Sonnet |
-| **Reviewer** | `/review` | Critical Bugs, Logic | Claude 3.5 Sonnet |
-| **Security** | `/security` | Vulnerabilities, Privacy | Claude 3.5 Sonnet |
-| **Designer** | `/design` | UI/UX, Accessibility | Claude 3.5 Sonnet |
-| **QA** | `/qa` | Edge Cases, Automation | DeepSeek Coder |
-| **Docs** | `/docs` | Documentation, Comments | GPT-4o |
-| **Ship** | `/ship` | Release, Rollback Plan | Kimi |
+### 🚀 What Problems Does It Solve?
 
-## 🇨🇳 Domestic Model Support (DeepSeek/Kimi/GLM)
+1.  **Context Pollution**: Single-model sessions often get "confused" by previous implementation details. GStack isolates high-level architecture from low-level coding.
+2.  **High Costs**: Stop using expensive Claude 3.5 for simple unit tests. Offload tasks to **DeepSeek** or **GPT-4o mini**.
+3.  **Vendor Lock-in**: Claude Code is locked to Anthropic. GStack gives you the freedom to swap models mid-flow.
+4.  **Domestic Barrier**: Native support for Chinese developers using DeepSeek, Kimi, and GLM without VPN hurdles.
 
-If you encounter `ERR_INVALID_URL` or other issues with `opencode auth login`, use the **Environment Variable Workaround** to connect domestic models (e.g., DeepSeek):
+### ✅ Pros
+- **Specialized Intelligence**: Each role uses the model that excels at that specific task (e.g., Gemini for long-context architecture).
+- **Autonomous Tool-Use**: Agents can now run `bash` to explore your codebase and `webfetch` to research external documentation.
+- **Structured Workflow**: Forces a "Think-Design-Code-Verify" cycle, significantly reducing technical debt.
+- **Open Source & Extensible**: Easily add your own roles (e.g., `DBA`, `DevOps`) via Markdown templates.
 
-1. **Skip `opencode auth login`**.
-2. **Export Environment Variables**:
-   ```bash
-   # Add these to your .zshrc or .bashrc
-   export OPENAI_API_KEY="your-deepseek-api-key"
-   export OPENAI_BASE_URL="https://api.deepseek.com/v1"
-   ```
-3. **Run OpenCode**:
-   ```bash
-   cd your-project
-   opencode
-   /plan-ceo "Analyze my project"
-   ```
+### ⚠️ Cons (Current Limitations)
+- **Setup Overhead**: Requires manual environment variable configuration for domestic models (due to OpenCode CLI bugs).
+- **Dependency**: Performance is tied to the stability of the OpenCode CLI and chosen model's tool-calling capability.
+- **Learning Curve**: Users need to understand the "Role-playing" concept to get the best results.
 
-*Note: In this mode, GStack roles use `openai/deepseek-coder` as the model identifier.*
+## 🎭 The Expert Team
+
+| Role | Command | Tool-set | Core Mission |
+|:---|:---|:---|:---|
+| **CEO** | `/plan-ceo` | 🌐 Web | Product vision, MVP scope, and business value verification. |
+| **Eng Manager** | `/plan-eng` | 💻 Bash, 🌐 Web | Technical architecture, system boundaries, and tech-stack selection. |
+| **Reviewer** | `/review` | 💻 Bash, 📝 Edit | Critical bug hunting, performance optimization, and logic review. |
+| **Security** | `/security` | 💻 Bash, 🌐 Web | Vulnerability scanning, privacy audit, and security hardening. |
+| **Designer** | `/design` | 🌐 Web | UI/UX consistency, accessibility (A11y), and user flow optimization. |
+| **QA** | `/qa` | 💻 Bash, 📝 Edit | Edge-case testing, test generation, and automated bug fixing. |
+| **Docs** | `/docs` | 📝 Edit, 🌐 Web | README auditing, API documentation, and technical writing. |
+| **Ship** | `/ship` | 💻 Bash | Release checklists, CHANGELOG generation, and rollback planning. |
 
 ## 🚀 Quick Start
 
-### Installation
+### 1. Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yandong2023/gstack-opencode.git
+git clone https://github.com/yandong2023/gstack-opencode.git && cd gstack-opencode
 
-# Install using the script or Makefile
-cd gstack-opencode && make install
+# Install agents, commands and skills
+make install
 
-# Validate installation
+# Validate your environment
 make validate
 ```
 
-### Usage
+### 2. Domestic Model Configuration (DeepSeek/Kimi)
 
-1. Open your project directory.
-2. Run `opencode`.
-3. Invoke roles: `/plan-ceo "Build a user feedback system"`
+If you are using domestic models, we recommend the **Environment Variable Workaround** to bypass CLI configuration bugs:
+
+```bash
+# Add to your .zshrc or .bashrc
+export OPENAI_API_KEY="your-deepseek-api-key"
+export OPENAI_BASE_URL="https://api.deepseek.com/v1"
+```
+
+### 3. Usage
+
+Enter your project directory and start the magic:
+```bash
+opencode
+/plan-ceo "I want to add a real-time notification system."
+```
 
 ---
 
@@ -100,45 +112,27 @@ make validate
 
 ## 🌐 概述
 
-**GStack for OpenCode** 不仅仅是一组 Prompt，它是一套 **结构化工作流系统**。它将 AI 从一个「万事通」助手，转变为一支按需召唤的专家团队。
+**GStack for OpenCode** 将你的 AI 从单一助手转变为一支 **动态专家团队**。通过利用 OpenCode 的 Agent 框架，它将专门的角色分配给最适合的大模型（Claude, Gemini, DeepSeek, Kimi），创造出在处理复杂工程任务时超越 Claude Code 等单一模型工具的工作流。
 
-### 为什么选择 GStack for OpenCode？
+### ✨ 核心特性
 
-- **开源优先**：完全适配 [OpenCode](https://opencode.ai/)，让你掌控自己的开发环境。
-- **模型自由**：打破单一模型限制。用 Kimi 做需求分析，用 Claude 做代码审计，用 DeepSeek 做架构设计。
-- **真正隔离**：每个角色都是独立 Agent，彻底杜绝上下文污染。
-- **专业分工**：根据每个模型的长处分配最适合的角色任务。
+- **🛡️ 多模型协作**：让 **Claude 3.5 Sonnet** 负责逻辑，**Gemini 1.5 Pro** 负责架构（200万上下文），**DeepSeek/Kimi** 负责高性价比推理。
+- **⚔️ 深度工具集成**：专家角色已解锁 `bash`（命令行）、`webfetch`（联网研究）和 `edit`（文件修改）权限。
+- **🧩 零上下文污染**：每个角色运行在独立的 Agent 会话中，确保架构决策不会被琐碎的实现细节干扰。
+- **🇨🇳 国产模型优化**：原生支持 DeepSeek、Kimi、智谱 GLM 等国内顶尖模型。
 
-## 🏗️ 架构与工作流
+## 🎭 专家团队介绍
 
-```mermaid
-graph LR
-    A[CEO /plan-ceo] -->|需求验证| B[工程经理 /plan-eng]
-    B -->|架构设计| C[程序员 默认]
-    C -->|代码实现| D[代码审查 /review]
-    D -->|安全审计| E[安全专家 /security]
-    E -->|UI/UX 评审| F[设计师 /design]
-    F -->|自动化测试| G[QA /qa]
-    G -->|文档审计| H[文档专家 /docs]
-    H -->|发布准备| I[发布经理 /ship]
-    I -->|上线发布| J(成功)
-```
+*   **CEO (`/plan-ceo`)**: 负责“重构问题本质”。不再直接讨论怎么写，而是讨论“值不值得做”。
+*   **工程经理 (`/plan-eng`)**: 负责“定义边界”。通过 `bash` 探索代码库，设计不带偏见的技术方案。
+*   **QA 工程师 (`/qa`)**: 负责“寻找失败”。通过 `bash` 运行测试，并使用 `edit` 权限自动修复 Bug。
+*   **安全专家 (`/security`)**: 负责“红队演练”。审计敏感数据泄露和注入风险。
 
-## 🎭 角色系统
+## 💡 最佳实践
 
-见上表。
-
-## 🚀 快速开始
-
-### 安装
-
-```bash
-# 克隆仓库
-git clone https://github.com/yandong2023/gstack-opencode.git
-
-# 使用 Makefile 或脚本安装
-cd gstack-opencode && make install
-```
+1.  **先沟通需求**：永远从 `/plan-ceo` 开始，AI 会帮你砍掉 30% 不必要的复杂性。
+2.  **给 QA 权限**：当 QA 要求运行 `npm test` 时，点击允许，它能自己找到并修复报错。
+3.  **大上下文优势**：如果你有 Gemini 1.5 Pro，建议将 `/plan-eng` 的模型设为 Gemini，它能“瞬间”理解你的整个代码库。
 
 ## 🤝 贡献
 
