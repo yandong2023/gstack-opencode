@@ -1,3 +1,5 @@
+
+
 # GStack for OpenCode 🚀
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -78,6 +80,9 @@ graph TD
 ### 1. Installation
 
 ```bash
+# Install OpenCode CLI (if not already installed)
+npm install -g opencode
+
 # Clone the repository
 git clone https://github.com/yandong2023/gstack-opencode.git && cd gstack-opencode
 
